@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <form id="hi">
+        <input type="text" name="" id="input" />
+        <button type="submit">submit</button>
+    </form>
+    <script>
+        // from value using input feild match value with array or input feild
+        let form = document.querySelector("#hi");
+        let arr = [1, 2, 3, 4, 5];
+        let found = false;
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            let input = document.querySelector("#input");
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i] == input.value) {
+                    console.log("hogya");
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                console.log("nhi hua");
+            }
+        });
+    </script>
+</body>
+
+</html>

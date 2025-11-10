@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .ji {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        align-items: center;
+        border-radius: 50%;
+        background-color: red;
+    }
+
+    button {
+
+        margin-top: 20%;
+    }
+</style>
+
+
+<body>
+
+    <div class="ji"></div>
+    <button>click</button>
+    <script>
+        let a = document.querySelector(".ji");
+        let btn = document.querySelector("button")
+        btn.addEventListener("click", function (e) {
+            a.style.backgroundColor = "blue"
+            console.log("color changed")
+        }
+        )
+    </script>
+</body>
+
+</html>

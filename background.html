@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+<style>
+    .user {
+        padding: 8px 15px;
+        margin: 5px 0;
+        border-radius: 8px;
+        color: white;
+        font-weight: bold;
+        width: fit-content;
+    }
+
+    button {
+        background-color: aliceblue;
+        font: 20px;
+        border: 1px solid whitesmoke;
+        border-radius: 10px;
+        padding: 5px;
+    }
+
+    button:hover {
+        background-color: aquamarine;
+    }
+
+    .input {
+        margin-top: 10px
+    }
+</style>
+
+<body>
+    <button>switch theme</button><br>
+    <input type="text" class="input" placeholder="Enter a name">
+    <button id="btn2"> submit</button>
+    <h2 class="title">User names</h2>
+    <div id="names"></div>
+    <script>
+        let btn = document.querySelector("button")
+        let title = document.querySelector(".title")
+        let dark = true
+        btn.addEventListener("click", function () {
+            if (dark) {
+                document.body.style.backgroundColor = "black";
+                title.style.color = "white";
+                dark = false;
+            } else {
+                document.body.style.backgroundColor = "white";
+                title.style.color = "black";
+                dark = true;
+            }
+        })
+        let url = 'https://dummyjson.com/users'
+        fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                const namesDiv = document.getElementById("names")
+                const btn2 = document.getElementById("btn2")
+                btn2.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    let input = document.querySelector(".input")
+                    let value = input.value
+                    let found = data.users.find(user => user.firstName === value)
+                    if (found) {
+                        console.log(found);
+
+                        alert("Name is available")
+                    } else {
+                        alert("Name is not available")
+                    }
+                })
+                let colors = ["red", "blue", "green", "pink", "orange", "purple", "yellow"];
+                let namesDivs = data.users.map((user, index) => {
+                    return ` <div class="user" style="background-color: ${colors[index % colors.length]}">
+                        ${user.firstName}
+                        </div>`
+                })
+                namesDiv.innerHTML = namesDivs.join("");
+            })
+            .catch(error => console.log("Error:", error))
+
+    </script>
+</body>
+
+</html>
